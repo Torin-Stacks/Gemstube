@@ -4,6 +4,7 @@ import africa.semicolon.gemstube.dto.EmailRequest;
 import africa.semicolon.gemstube.dto.Recipient;
 import africa.semicolon.gemstube.dto.RegisterRequest;
 import africa.semicolon.gemstube.dto.RegisterResponse;
+import africa.semicolon.gemstube.exceptions.GemstubeException;
 import africa.semicolon.gemstube.models.User;
 import africa.semicolon.gemstube.repositories.UserRepository;
 import lombok.AllArgsConstructor;
@@ -35,5 +36,10 @@ public class UserService implements IUserService {
         mailService.sendEmail(emailRequest);
         return new RegisterResponse(savedUser.getId());
 
+    }
+
+    @Override
+    public User getUserById(Long creatorId) throws GemstubeException {
+        return userRepository.findById(creatorId).orElseThrow(()->new GemstubeException(String.format("user with id %d not found", creatorId)));
     }
 }

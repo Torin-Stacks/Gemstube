@@ -3,7 +3,7 @@ package africa.semicolon.gemstube.dto;
 import lombok.Data;
 
 @Data
-public class UploadMediaResponse {
-    private Long mediaId;
+public class UploadSubtitleResponse {
     private String response;
+    private Long subtitleId;
 }
